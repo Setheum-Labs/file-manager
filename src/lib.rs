@@ -78,6 +78,7 @@ pub trait FileManager: Debug + Clone + Send + Sync + 'static {
     fn new_fsync_batch(&self) -> io::Result<FSyncBatch<Self>>;
     fn shutdown(&self) -> io::Result<()>;
     fn list(&self, path: &PathId) -> io::Result<Vec<PathId>>;
+    fn available_space_bytes(&self, path: &PathId) -> io::Result<u64>;
 }
 
 pub trait File: Sized + Debug + Write + Read + Seek + Send + Sync + 'static {

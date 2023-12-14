@@ -57,6 +57,10 @@ impl FileManager for StdFileManager {
     fn rename(&self, from: &PathId, to: PathId) -> io::Result<()> {
         fs::rename(&**from, &*to)
     }
+
+    fn available_space_bytes(&self, path: &PathId) -> io::Result<u64> {
+        fs2::available_space(path.to_path_buf())
+    }
 }
 
 #[derive(Debug)]

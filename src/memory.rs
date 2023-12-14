@@ -225,6 +225,11 @@ impl FileManager for MemoryFileManager {
             Err(io::Error::from(io::ErrorKind::NotFound))
         }
     }
+
+    fn available_space_bytes(&self, _: &PathId) -> io::Result<u64> {
+        let mem_info = sys_info::mem_info().map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
+        Ok(mem_info.avail)
+    }
 }
 
 #[derive(Clone, Debug)]
