@@ -61,6 +61,10 @@ impl FileManager for StdFileManager {
     fn available_space_bytes(&self, path: &PathId) -> io::Result<u64> {
         fs2::available_space(path.to_path_buf())
     }
+
+    fn total_space_bytes(&self, path: &PathId) -> io::Result<u64> {
+        fs2::total_space(path.to_path_buf())
+    }
 }
 
 #[derive(Debug)]

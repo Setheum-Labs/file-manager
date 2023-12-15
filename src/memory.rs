@@ -230,6 +230,11 @@ impl FileManager for MemoryFileManager {
         let mem_info = sys_info::mem_info().map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
         Ok(mem_info.avail)
     }
+
+    fn total_space_bytes(&self, path: &PathId) -> io::Result<u64> {
+        let mem_info = sys_info::mem_info().map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
+        Ok(mem_info.total)
+    }
 }
 
 #[derive(Clone, Debug)]
