@@ -122,3 +122,23 @@ fn get_available_space_bytes_std() {
             > 0
     );
 }
+
+#[test]
+fn get_total_space_bytes_memory() {
+    let fs = MemoryFileManager::default();
+    assert!(
+        fs.total_space_bytes(&PathId::from(Path::new("/")))
+            .expect("couldn't get available space")
+            > 0
+    );
+}
+
+#[test]
+fn get_total_space_bytes_std() {
+    let fs = StdFileManager::default();
+    assert!(
+        fs.total_space_bytes(&PathId::from(Path::new("/")))
+            .expect("couldn't get available space")
+            > 0
+    );
+}
